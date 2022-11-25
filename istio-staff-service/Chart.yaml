@@ -1,0 +1,9 @@
+apiVersion: v2
+name: fleetman-staff-service
+description: A Helm chart for fleetman-staff-service app
+
+type: application
+
+version: 0.1.0
+
+appVersion: "0.1.0"

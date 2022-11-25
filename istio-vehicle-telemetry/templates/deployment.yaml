@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "app.fullname" . }}
+  annotations:
+{{ toYaml .Values.deployment.annotations | indent 4 }}
+  labels:
+{{- if .Values.deployment.labels }}
+{{ toYaml .Values.deployment.labels | indent 4 }}
+{{- end }}
+spec:
+  replicas: {{ .Values.deployment.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.labels.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.labels.app }}
+        version: {{ .Values.deployment.labels.version }}
+    spec:
+      {{- if .Values.global.repository }}
+      imagePullSecrets:
+      - name: {{  .Values.global.repository }}
+      {{- end }}
+      hostAliases:
+      {{- range .Values.deployment.hostAliases }}
+      - ip: {{ .ip | quote }}
+        hostnames:
+        {{- range .hostnames }}
+        - {{ . }}
+        {{- end }}
+      {{- end }}
+      containers:
+      - name: {{ include "app.fullname" . }}-container
+        image: "{{ .Values.deployment.image.name }}:{{ .Values.deployment.image.tag }}"
+        {{- if .Values.deployment.command }}
+        command:
+        {{- range .Values.deployment.command }}
+        - {{ . | quote }} 
+        {{- end }}        
+        {{- end }}
+        imagePullPolicy: {{ .Values.deployment.image.pullPolicy }}
+        {{- if or .Values.configmap.enabled .Values.secret.enabled }}
+        envFrom:
+        {{- if .Values.secret.enabled }}
+        - secretRef:
+            name: {{ include "app.secret" . }}
+        {{- end }}
+        {{- if .Values.configmap.enabled }}
+        - configMapRef:
+            name: {{ include "app.configmap" . }}
+        {{- end }}
+        {{- end }}
+        {{- if .Values.deployment.resources }}
+        {{- with .Values.deployment.resources }}
+        resources:
+{{ toYaml . | indent 10 }}
+        {{- end }}
+        {{- end }}
+        {{- if .Values.deployment.probes.enabled }}
+        {{- with .Values.deployment.probes.livenessProbe }}
+        livenessProbe:
+{{ toYaml . | indent 10 }}
+        {{- end }}
+        {{- with .Values.deployment.probes.readinessProbe }}
+        readinessProbe:
+{{ toYaml . | indent 10 }}
+        {{- end }}
+        {{- end }}
+        {{- range .Values.deployment.containerPort }}
+        ports:
+        - containerPort: {{ .containerPort }}
+          name: {{ .name }}
+        {{- end }}

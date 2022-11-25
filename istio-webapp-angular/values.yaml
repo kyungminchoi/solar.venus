@@ -1,0 +1,79 @@
+# Alpha chart for Istio-demo
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# global variables for all chart
+global:
+  repository: "regcred"
+ingress:
+  enabled: true
+  annotations: 
+    cert-manager.io/cluster-issuer: letsencrypt
+    ingress.kubernetes.io/ssl-redirect: 'true'
+    ingress.kubernetes.io/proxy-body-size: '0'
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/proxy-body-size: '0'
+    acme.cert-manager.io/http01-edit-in-place: "true"
+    kubernetes.io/tls-acme: "true"
+  servicePort: 80
+  hosts:
+    - host: jz60ywbkip6vqnmv55.toastgslb.com
+      paths:
+        - "/"
+  tls: 
+   - secretName: jz60ywbkip6vqnmv55.toastgslb.com-tls
+     hosts:
+       - jz60ywbkip6vqnmv55.toastgslb.com
+deployment:
+  annotations:
+    app: istio-demo-app
+    provider: nhn-cloud-engineering
+  labels:
+    app: webapp
+    version: original
+  replicaCount: 1
+  # hostAliases:
+  #   - ip: "10.1.1.1"
+  #     hostnames:
+  #       - "test.nhn.wmi"
+  image:
+    name: "5627e02d-kr2-registry.container.nhncloud.com/ncr/istio-webapp-angular"
+    tag: "2"
+    pullPolicy: Always
+  command: []
+  probes:
+    enabled: false
+    livenessProbe:
+      tcpSocket:
+        port: 80
+      initialDelaySeconds: 30
+      periodSeconds: 60
+    readinessProbe:
+      tcpSocket:
+        port: 80
+      initialDelaySeconds: 30
+      periodSeconds: 60
+  containerPort:
+    - containerPort: 80
+      name: container-port
+      #    resources:
+      #      requests:
+      #        memory: 200Mi
+      #        cpu: 100m
+      #      limits:
+      #        memory: 500Mi
+      #        cpu: 200m
+configmap:
+  enabled: true
+  data:
+    SPRING_PROFILES_ACTIVE: "production-microservice"
+secret:
+  enabled: false
+  data:
+    db-password: "123"
+service:
+  ports:
+    - servicePort: 80
+      containerPort: 80
+      type: NodePort
+      nodePort: 30083

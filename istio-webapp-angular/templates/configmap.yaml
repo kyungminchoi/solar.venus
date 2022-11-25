@@ -1,0 +1,16 @@
+{{- if .Values.configmap.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "app.configmap" . }}
+  labels:
+{{- if .Values.deployment.labels }}
+{{ toYaml .Values.deployment.labels | indent 4 }}
+{{- end }}
+  annotations:
+{{ toYaml .Values.deployment.annotations | indent 4 }}
+data:
+{{- range $key, $value := .Values.configmap.data }}
+  {{ $key }}: {{ $value |quote }}
+{{- end }}        
+{{- end }}

@@ -1,0 +1,64 @@
+# Alpha chart for Istio-demo
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# global variables for all chart
+global:
+  repository: "regcred"
+deployment:
+  annotations:
+    app: istio-demo-app
+    provider: nhn-cloud-engineering
+  labels:
+    app: photo-service
+    version: original
+  replicaCount: 2
+  hostAliases:
+    - ip: "10.1.1.1"
+      hostnames:
+        - "test.nhn.wmi"
+  image:
+    name: "5627e02d-kr2-registry.container.nhncloud.com/ncr/istio-photo-service"
+    tag: "1"
+    pullPolicy: Always
+  command:
+    - java
+    - -Xmx50m
+    - -jar
+    - webapp.jar
+  probes:
+    enabled: false
+    livenessProbe:
+      tcpSocket:
+        port: 8080
+      initialDelaySeconds: 30
+      periodSeconds: 60
+    readinessProbe:
+      tcpSocket:
+        port: 8080
+      initialDelaySeconds: 30
+      periodSeconds: 60
+  containerPort:
+    - containerPort: 8080
+      name: container-port
+      #    resources:
+      #      requests:
+      #        memory: 200Mi
+      #        cpu: 100m
+      #      limits:
+      #        memory: 500Mi
+      #        cpu: 200m
+configmap:
+  enabled: true
+  data:
+    SPRING_PROFILES_ACTIVE: "production-microservice"
+secret:
+  enabled: false
+  data:
+    db-password: "123"
+service:
+  ports:
+    - servicePort: 8080
+      containerPort: 8080
+      type: ClusterIP
+      # nodePort: 30080                
