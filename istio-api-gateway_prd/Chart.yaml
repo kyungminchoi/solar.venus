@@ -1,0 +1,9 @@
+apiVersion: v2
+name: fleetman-api-gateway
+description: A Helm chart for fleetman-api-gateway app
+
+type: application
+
+version: 0.1.0
+
+appVersion: "0.1.0"
