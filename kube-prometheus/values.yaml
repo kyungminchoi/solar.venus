@@ -14,7 +14,8 @@ global:
   ## imagePullSecrets:
   ##   - myRegistryKeySecretName
   ##
-  imagePullSecrets: []
+  imagePullSecrets: 
+  - private
   storageClass: ""
   labels: {}
 
