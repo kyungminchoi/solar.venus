@@ -76,8 +76,8 @@ objstoreConfig: |-
   config:
     bucket: minio
     endpoint: kr2-api-storage.cloud.toast.com
-    access_key: f98ff7a81ccb4aeaa81607b9400d0380
-    secret_key: c2ed6cfb577b4df4a6c82ed1cea41403
+    access_key: da0a4319dc4441a598b69da5fc942a8b
+    secret_key: 8bc2cce11053466d8a4b16f3dce4da8d
     insecure: true 
 ## @param indexCacheConfig The [index cache configuration](https://thanos.io/tip/components/store.md/)
 ## Specify content for index-cache.yml
@@ -184,8 +184,8 @@ query:
   ## @param query.stores Statically configure store APIs to connect with Thanos Query
   ##
   stores: 
-  - 10.254.48.70:10901
-  - 10.254.178.100:10901
+  - 10.254.132.116:10901
+  - 10.254.106.102:10901
   ## @param query.sdConfig Query Service Discovery Configuration
   ## Specify content for servicediscovery.yml
   ##
@@ -466,7 +466,7 @@ query:
   service:
     ## @param query.service.type Kubernetes service type
     ##
-    type: ClusterIP
+    type: LoadBalancer
     ## @param query.service.ports.http Thanos Query service HTTP port
     ##
     ports:
@@ -1697,7 +1697,10 @@ compactor:
   ##
   podSecurityContext:
     enabled: true
-    fsGroup: 0
+    fsGroup: 0 
+    runAsGroup: 0 
+    runAsUser: 0 
+    runAsNonRoot: false 
   ## K8s containers' Security Context for Thanos Compactor containers
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
   ## @param compactor.containerSecurityContext.enabled Enable container security context for the Thanos Compactor containers
@@ -1872,7 +1875,7 @@ compactor:
   service:
     ## @param compactor.service.type Kubernetes service type
     ##
-    type: ClusterIP
+    type: LoadBalancer
     ## @param compactor.service.ports.http Thanos Compactor service HTTP port
     ##
     ports:
@@ -2053,7 +2056,7 @@ compactor:
 storegateway:
   ## @param storegateway.enabled Enable/disable Thanos Store Gateway component
   ##
-  enabled: false
+  enabled: true
   ## @param storegateway.logLevel Thanos Store Gateway log level
   ##
   logLevel: info
@@ -2137,7 +2140,10 @@ storegateway:
   ##
   podSecurityContext:
     enabled: true
-    fsGroup: 1001
+    fsGroup: 0 
+    runAsGroup: 0 
+    runAsUser: 0 
+    runAsNonRoot: false 
   ## K8s containers' Security Context for Thanos Store Gateway containers
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
   ## @param storegateway.containerSecurityContext.enabled Enable container security context for the Thanos Store Gateway containers
@@ -2147,7 +2153,7 @@ storegateway:
   ## @param storegateway.containerSecurityContext.readOnlyRootFilesystem mount / (root) as a readonly filesystem on Thanos Store Gateway containers
   ##
   containerSecurityContext:
-    enabled: true
+    enabled: false
     runAsUser: 1001
     runAsNonRoot: true
     allowPrivilegeEscalation: false
@@ -2312,7 +2318,7 @@ storegateway:
   service:
     ## @param storegateway.service.type Kubernetes service type
     ##
-    type: ClusterIP
+    type: LoadBalancer
     ## @param storegateway.service.ports.http Thanos Store Gateway service HTTP port
     ## @param storegateway.service.ports.grpc Thanos Store Gateway service GRPC port
     ##
@@ -2681,8 +2687,8 @@ ruler:
   ## NOTE: This is only used when ruler.alertmanagersConfig is not set
   ##
   alertmanagers: 
-    - http://192.168.0.117:32283
-    - http://192.168.0.71:31569
+    - http://10.254.115.213:31538
+    - http://10.254.246.233:31150
   ## @param ruler.alertmanagersConfig Alert managers configuration
   ## NOTE: This is only used when ruler.alertmanagers is not set
   ## ref: https://thanos.io/tip/components/rule.md/#alertmanager
@@ -2937,7 +2943,7 @@ ruler:
   service:
     ## @param ruler.service.type Kubernetes service type
     ##
-    type: ClusterIP
+    type: LoadBalancer
     ## @param ruler.service.ports.http Thanos Ruler service HTTP port
     ## @param ruler.service.ports.grpc Thanos Ruler service GRPC port
     ##
