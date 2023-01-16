@@ -1710,7 +1710,7 @@ compactor:
   ## @param compactor.containerSecurityContext.readOnlyRootFilesystem mount / (root) as a readonly filesystem on Thanos Compactor containers
   ##
   containerSecurityContext:
-    enabled: true
+    enabled: false
     runAsUser: 0
     runAsNonRoot: false
     allowPrivilegeEscalation: false
