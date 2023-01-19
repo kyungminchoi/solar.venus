@@ -9,11 +9,7 @@
 ## @param global.labels Additional labels to apply to all resources
 ##
 global:
-  imageRegistry: ""
-  ## E.g.
-  ## imagePullSecrets:
-  ##   - myRegistryKeySecretName
-  ##
+  imageRegistry: 
   imagePullSecrets: 
   - private
   storageClass: ""
@@ -43,7 +39,7 @@ operator:
   ## @param operator.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: docker.io
+    registry: [YOUR_NCR_REGISTRY]
     repository: bitnami/prometheus-operator
     tag: 0.51.2-debian-10-r1
     ## Specify a imagePullPolicy
@@ -347,7 +343,7 @@ prometheus:
   ## @param prometheus.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: docker.io
+    registry: [YOUR_NCR_REGISTRY]
     repository: bitnami/prometheus
     tag: 2.30.2-debian-10-r3
     ## Optionally specify an array of imagePullSecrets.
@@ -995,7 +991,7 @@ prometheus:
     ## @param prometheus.thanos.image.pullSecrets Specify docker-registry secret names as an array
     ##
     image:
-      registry: docker.io
+      registry: [YOUR_NCR_REGISTRY]
       repository: bitnami/thanos
       tag: 0.23.1-scratch-r0
       ## Specify a imagePullPolicy. Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -1103,7 +1099,7 @@ prometheus:
     service:
       ## @param prometheus.thanos.service.type Kubernetes service type
       ##
-      type: NodePort
+      type: LoadBalancer
       ## @param prometheus.thanos.service.port Thanos service port
       ##
       port: 10901
@@ -1131,7 +1127,10 @@ prometheus:
       loadBalancerSourceRanges: []
       ## @param prometheus.thanos.service.annotations Additional annotations for Prometheus service
       ##
-      annotations: {}
+      annotations: 
+      - loadbalancer.openstack.org/network-id: [YOUR_VPC_ID]
+      - loadbalancer.openstack.org/subnet-id: [YOUR_SUBNET_ID]
+      - service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
       ## @param prometheus.thanos.service.extraPorts Additional ports to expose from the Thanos sidecar container
       ## extraPorts:
       ##   - name: http
@@ -1198,7 +1197,7 @@ alertmanager:
   ## @param alertmanager.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: docker.io
+    registry: [YOUR_NCR_REGISTRY]
     repository: bitnami/alertmanager
     tag: 0.23.0-debian-10-r41
     ## Optionally specify an array of imagePullSecrets.
