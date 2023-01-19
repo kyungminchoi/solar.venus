@@ -1132,9 +1132,9 @@ prometheus:
       ## @param prometheus.thanos.service.annotations Additional annotations for Prometheus service
       ##
       annotations: 
-        loadbalancer.openstack.org/network-id: YOUR_VPC_ID
-        loadbalancer.openstack.org/subnet-id: YOUR_SUBNET_ID
-        service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
+      - loadbalancer.openstack.org/network-id: YOUR_VPC_ID
+      - loadbalancer.openstack.org/subnet-id: YOUR_SUBNET_ID
+      - service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
       ## @param prometheus.thanos.service.extraPorts Additional ports to expose from the Thanos sidecar container
       ## extraPorts:
       ##   - name: http
