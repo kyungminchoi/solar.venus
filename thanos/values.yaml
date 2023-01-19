@@ -77,8 +77,8 @@ objstoreConfig: |-
     bucket: thanos
     region: KR2
     endpoint: kr2-api-storage.cloud.toast.com
-    access_key: [YOUR_S3_API_ACCESS_KEY]
-    secret_key: [YOUR_S3_API_SECRET_KEY]
+    access_key: <YOUR_S3_API_ACCESS_KEY>
+    secret_key: <YOUR_S3_API_SECRET_KEY>
 ## @param indexCacheConfig The [index cache configuration](https://thanos.io/tip/components/store.md/)
 ## Specify content for index-cache.yml
 ##
@@ -184,8 +184,8 @@ query:
   ## @param query.stores Statically configure store APIs to connect with Thanos Query
   ##
   stores: 
-  - [YOUR_DEV_CLUSTER_THANOS_IP]:10901
-  - [YOUR_PRD_CLUSTER_THANOS_IP]:10901
+  - <YOUR_DEV_CLUSTER_THANOS_IP>:10901
+  - <YOUR_PRD_CLUSTER_THANOS_IP>:10901
   ## @param query.sdConfig Query Service Discovery Configuration
   ## Specify content for servicediscovery.yml
   ##
@@ -2687,8 +2687,8 @@ ruler:
   ## NOTE: This is only used when ruler.alertmanagersConfig is not set
   ##
   alertmanagers: 
-    - [YOUR_DEV_CLUSTER_ALERTMANAGER_IP:PORT]
-    - [YOUR_PRD_CLUSTER_ALERTMANAGER_IP:PORT]
+    - <YOUR_DEV_CLUSTER_ALERTMANAGER_IP:PORT>
+    - <YOUR_PRD_CLUSTER_ALERTMANAGER_IP:PORT>
   ## @param ruler.alertmanagersConfig Alert managers configuration
   ## NOTE: This is only used when ruler.alertmanagers is not set
   ## ref: https://thanos.io/tip/components/rule.md/#alertmanager
