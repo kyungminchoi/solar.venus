@@ -482,7 +482,7 @@ prometheus:
   ingress:
     ## @param prometheus.ingress.enabled Enable ingress controller resource
     ##
-    enabled: true
+    enabled: false
     ## DEPRECATED: Use prometheus.ingress.annotations instead of prometheus.ingress.certManager
     ## certManager: false
     ##
