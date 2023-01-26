@@ -9,7 +9,7 @@
 ## @param global.labels Additional labels to apply to all resources
 ##
 global:
-  imageRegistry: ""
+  imageRegistry: YOUR_NCR_REGISTRY
   ## E.g.
   ## imagePullSecrets:
   ##   - myRegistryKeySecretName
