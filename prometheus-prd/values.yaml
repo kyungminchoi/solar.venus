@@ -9,7 +9,7 @@
 ## @param global.labels Additional labels to apply to all resources
 ##
 global:
-  imageRegistry: YOUR_NCR_REGISTRY
+  imageRegistry: private-049dd75a-kr2-registry.container.nhncloud.com/ncr
   ## E.g.
   ## imagePullSecrets:
   ##   - myRegistryKeySecretName
@@ -43,7 +43,7 @@ operator:
   ## @param operator.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: YOUR_NCR_REGISTRY
+    registry: private-049dd75a-kr2-registry.container.nhncloud.com/ncr
     repository: bitnami/prometheus-operator
     tag: 0.51.2-debian-10-r1
     ## Specify a imagePullPolicy
@@ -347,7 +347,7 @@ prometheus:
   ## @param prometheus.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: YOUR_NCR_REGISTRY
+    registry: private-049dd75a-kr2-registry.container.nhncloud.com/ncr
     repository: bitnami/prometheus
     tag: 2.30.2-debian-10-r3
     ## Optionally specify an array of imagePullSecrets.
@@ -995,7 +995,7 @@ prometheus:
     ## @param prometheus.thanos.image.pullSecrets Specify docker-registry secret names as an array
     ##
     image:
-      registry: YOUR_NCR_REGISTRY
+      registry: private-049dd75a-kr2-registry.container.nhncloud.com/ncr
       repository: bitnami/thanos
       tag: 0.23.1-scratch-r0
       ## Specify a imagePullPolicy. Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -1198,7 +1198,7 @@ alertmanager:
   ## @param alertmanager.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: YOUR_NCR_REGISTRY
+    registry: private-049dd75a-kr2-registry.container.nhncloud.com/ncr
     repository: bitnami/alertmanager
     tag: 0.23.0-debian-10-r41
     ## Optionally specify an array of imagePullSecrets.
