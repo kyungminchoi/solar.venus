@@ -28,7 +28,7 @@ keywords:
 maintainers:
 - email: containers@bitnami.com
   name: Bitnami
-name: kube-prometheus
+name: prometheus-dev
 sources:
 - https://github.com/bitnami/bitnami-docker-prometheus-operator
 - https://github.com/bitnami/bitnami-docker-prometheus
