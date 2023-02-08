@@ -9,13 +9,14 @@
 ## @param global.storageClass Global StorageClass for Persistent Volume(s)
 ##
 global:
-  imageRegistry: ""
+  imageRegistry: YOUR_NCR_REGISTRY
   ## E.g.
   ## imagePullSecrets:
   ##   - myRegistryKeySecretName
   ##
-  imagePullSecrets: []
-  storageClass: ""
+  imagePullSecrets: 
+    - private
+  storageClass: csi-sc
 
 ## @section Common parameters
 ##
@@ -62,7 +63,7 @@ operator:
   ## @param operator.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: docker.io
+    registry: YOUR_NCR_REGISTRY
     repository: bitnami/prometheus-operator
     tag: 0.61.1-debian-11-r0
     digest: ""
@@ -188,7 +189,7 @@ operator:
   ## @param operator.containerSecurityContext.readOnlyRootFilesystem Mount / (root) as a readonly filesystem
   ##
   containerSecurityContext:
-    enabled: false
+    enabled: true
     capabilities:
       drop:
       - ALL
@@ -442,7 +443,7 @@ operator:
       enabled: true
       readOnlyRootFilesystem: false
       allowPrivilegeEscalation: false
-      runAsNonRoot: true
+      runAsNonRoot: false
       capabilities:
         drop:
           - ALL
@@ -502,7 +503,7 @@ prometheus:
   ## @param prometheus.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: docker.io
+    registry: YOUR_NCR_REGISTRY
     repository: bitnami/prometheus
     tag: 2.40.3-debian-11-r0
     digest: ""
@@ -541,10 +542,10 @@ prometheus:
   ##
   podSecurityContext:
     enabled: true
-    runAsUser: 0
-    fsGroup: 0
-    runAsGroup: 0
-    runAsNonRoot: false
+    fsGroup: 0 
+    runAsGroup: 0 
+    runAsUser: 0 
+    runAsNonRoot: false 
   ## Prometheus containers' Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
   ## @param prometheus.containerSecurityContext.enabled Enable container security context
@@ -873,7 +874,8 @@ prometheus:
   alertingEndpoints: []
   ## @param prometheus.externalLabels External labels to add to any time series or alerts when communicating with external systems
   ##
-  externalLabels: {}
+  externalLabels: 
+    cluster: dev
   ## @param prometheus.replicaExternalLabelName Name of the external label used to denote replica name
   ##
   replicaExternalLabelName: ""
@@ -1119,7 +1121,7 @@ prometheus:
   thanos:
     ## @param prometheus.thanos.create Create a Thanos sidecar container
     ##
-    create: false
+    create: true
     ## Bitnami Thanos image
     ## ref: https://hub.docker.com/r/bitnami/thanos/tags/
     ## @param prometheus.thanos.image.registry Thanos image registry
@@ -1130,7 +1132,7 @@ prometheus:
     ## @param prometheus.thanos.image.pullSecrets Specify docker-registry secret names as an array
     ##
     image:
-      registry: docker.io
+      registry: YOUR_NCR_REGISTRY
       repository: bitnami/thanos
       tag: 0.29.0-scratch-r0
       digest: ""
@@ -1155,7 +1157,7 @@ prometheus:
     ## @param prometheus.thanos.containerSecurityContext.capabilities.drop [array] Linux Kernel capabilities which should be dropped
     ##
     containerSecurityContext:
-      enabled: true
+      enabled: false
       readOnlyRootFilesystem: false
       allowPrivilegeEscalation: false
       runAsNonRoot: true
@@ -1248,7 +1250,7 @@ prometheus:
     service:
       ## @param prometheus.thanos.service.type Kubernetes service type
       ##
-      type: ClusterIP
+      type: NodePort
       ## @param prometheus.thanos.service.ports.grpc Thanos service port
       ##
       ports:
@@ -1422,7 +1424,7 @@ alertmanager:
   ## @param alertmanager.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: docker.io
+    registry: YOUR_NCR_REGISTRY
     repository: bitnami/alertmanager
     tag: 0.24.0-debian-11-r61
     digest: ""
@@ -1983,7 +1985,7 @@ blackboxExporter:
   ## @param blackboxExporter.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: docker.io
+    registry: YOUR_NCR_REGISTRY
     repository: bitnami/blackbox-exporter
     tag: 0.22.0-debian-11-r38
     digest: ""
