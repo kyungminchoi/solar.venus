@@ -77,8 +77,8 @@ objstoreConfig: |-
     bucket: thanos
     region: KR2
     endpoint: kr2-api-storage.cloud.toast.com
-    access_key: 7068040798b94363b7859527a136fae4
-    secret_key: bee62c665a434a5596eb9d037b41700e
+    access_key: b5fc9d596df94061b000cd7d170e8bbf
+    secret_key: d95308f28d4f4868abcacd8b55dfc56b
 ## @param indexCacheConfig The [index cache configuration](https://thanos.io/tip/components/store.md/)
 ## Specify content for index-cache.yml
 ##
@@ -184,8 +184,8 @@ query:
   ## @param query.stores Statically configure store APIs to connect with Thanos Query
   ##
   stores: 
-  - 10.10.1.100:10901
-  - 172.16.1.21:10901
+  - 10.10.1.99:10901
+  - 172.16.0.74:10901
   ## @param query.sdConfig Query Service Discovery Configuration
   ## Specify content for servicediscovery.yml
   ##
