@@ -875,7 +875,7 @@ prometheus:
   ## @param prometheus.externalLabels External labels to add to any time series or alerts when communicating with external systems
   ##
   externalLabels: 
-    cluster: dev
+    cluster: prd
   ## @param prometheus.replicaExternalLabelName Name of the external label used to denote replica name
   ##
   replicaExternalLabelName: ""
