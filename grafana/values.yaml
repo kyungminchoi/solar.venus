@@ -372,8 +372,8 @@ initChownData:
 
 
 # Administrator credentials when not using an existing secret (see below)
-adminUser: admin123
-# adminPassword: strongpassword
+adminUser: admin
+adminPassword: admin123
 
 # Use an existing secret for the admin user.
 admin:
