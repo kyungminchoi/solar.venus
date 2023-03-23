@@ -77,8 +77,8 @@ objstoreConfig: |-
     bucket: thanos
     region: KR2
     endpoint: kr2-api-storage.cloud.toast.com
-    access_key: b5fc9d596df94061b000cd7d170e8bbf
-    secret_key: d95308f28d4f4868abcacd8b55dfc56b
+    access_key: MY_S3_API_ACCESS_KEY
+    secret_key: MY_S3_API_SECRET_KEY
 ## @param indexCacheConfig The [index cache configuration](https://thanos.io/tip/components/store.md/)
 ## Specify content for index-cache.yml
 ##
