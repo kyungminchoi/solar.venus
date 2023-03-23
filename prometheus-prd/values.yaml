@@ -9,7 +9,7 @@
 ## @param global.storageClass Global StorageClass for Persistent Volume(s)
 ##
 global:
-  imageRegistry: private-820ed231-kr2-registry.container.nhncloud.com/ncr
+  imageRegistry: MY_NCR_PRIVATE_URI
   ## E.g.
   ## imagePullSecrets:
   ##   - myRegistryKeySecretName
@@ -63,7 +63,7 @@ operator:
   ## @param operator.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: private-820ed231-kr2-registry.container.nhncloud.com/ncr
+    registry: MY_NCR_PRIVATE_URI
     repository: bitnami/prometheus-operator
     tag: 0.61.1-debian-11-r0
     digest: ""
@@ -503,7 +503,7 @@ prometheus:
   ## @param prometheus.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: private-820ed231-kr2-registry.container.nhncloud.com/ncr
+    registry: MY_NCR_PRIVATE_URI
     repository: bitnami/prometheus
     tag: 2.40.3-debian-11-r0
     digest: ""
@@ -577,7 +577,7 @@ prometheus:
   service:
     ## @param prometheus.service.type Kubernetes service type
     ##
-    type: ClusterIP
+    type: LoadBalancer
     ## @param prometheus.service.ports.http Prometheus service port
     ##
     ports:
@@ -619,8 +619,8 @@ prometheus:
     ## @param prometheus.service.annotations Additional annotations for Prometheus service  (this value is evaluated as a template)
     ##
     annotations: 
-      loadbalancer.openstack.org/network-id: 6d2652a9-1734-4577-91a8-8226e524e22e
-      loadbalancer.openstack.org/subnet-id: c224aa68-9985-498c-a893-0fd04c535e95
+      loadbalancer.openstack.org/network-id: MY_PRD_VPC_ID
+      loadbalancer.openstack.org/subnet-id: MY_PRD_SUBNET_ID
       service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
     ## @param prometheus.service.sessionAffinity Session Affinity for Kubernetes service, can be "None" or "ClientIP"
     ## If "ClientIP", consecutive client requests will be directed to the same Pod
@@ -1135,7 +1135,7 @@ prometheus:
     ## @param prometheus.thanos.image.pullSecrets Specify docker-registry secret names as an array
     ##
     image:
-      registry: private-820ed231-kr2-registry.container.nhncloud.com/ncr
+      registry: MY_NCR_PRIVATE_URI
       repository: bitnami/thanos
       tag: 0.29.0-scratch-r0
       digest: ""
@@ -1427,7 +1427,7 @@ alertmanager:
   ## @param alertmanager.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: private-820ed231-kr2-registry.container.nhncloud.com/ncr
+    registry: MY_NCR_PRIVATE_URI
     repository: bitnami/alertmanager
     tag: 0.24.0-debian-11-r61
     digest: ""
@@ -1988,7 +1988,7 @@ blackboxExporter:
   ## @param blackboxExporter.image.pullSecrets Specify docker-registry secret names as an array
   ##
   image:
-    registry: private-820ed231-kr2-registry.container.nhncloud.com/ncr
+    registry: MY_NCR_PRIVATE_URI
     repository: bitnami/blackbox-exporter
     tag: 0.22.0-debian-11-r38
     digest: ""
