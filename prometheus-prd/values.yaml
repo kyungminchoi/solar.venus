@@ -1554,7 +1554,7 @@ alertmanager:
   serviceMonitor:
     ## @param alertmanager.serviceMonitor.enabled Creates a ServiceMonitor to monitor Alertmanager
     ##
-    enabled: true
+    enabled: false
     ## @param alertmanager.serviceMonitor.interval Scrape interval. If not set, the Prometheus default scrape interval is used.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#endpoint
     ##
@@ -1918,7 +1918,7 @@ node-exporter:
     labels:
       jobLabel: node-exporter
   serviceMonitor:
-    enabled: true
+    enabled: false
     jobLabel: jobLabel
   extraArgs:
     collector.filesystem.ignored-mount-points: "^/(dev|proc|sys|var/lib/docker/.+)($|/)"
@@ -1927,7 +1927,7 @@ node-exporter:
 ##
 kube-state-metrics:
   serviceMonitor:
-    enabled: true
+    enabled: false
     honorLabels: true
 ## Component scraping for kubelet and kubelet hosted cAdvisor
 ##
@@ -1941,7 +1941,7 @@ kubelet:
   serviceMonitor:
     ## @param kubelet.serviceMonitor.https Enable scraping of the kubelet over HTTPS
     ##
-    https: true
+    https: false
     ## @param kubelet.serviceMonitor.interval Scrape interval (use by default, falling back to Prometheus' default)
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/master/Documentation/api.md#endpoint
     ##
