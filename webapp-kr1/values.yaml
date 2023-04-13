@@ -1,0 +1,44 @@
+# Alpha chart for Istio-demo
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# global variables for all chart
+global:
+  repository: "regcred"
+ingress:
+  enabled: false
+deployment:
+  annotations:
+    app: istio-demo-app
+    provider: nhn-cloud-engineering
+  labels:
+    app: webapp
+    version: original
+  replicaCount: 1
+  image:
+    name: "richardchesterwood/k8s-fleetman-webapp-angular"
+    tag: ""
+    pullPolicy: Always
+  command: []
+  probes:
+    enabled: false
+  containerPort:
+    - containerPort: 80
+      name: container-port
+configmap:
+  enabled: true
+  data:
+    SPRING_PROFILES_ACTIVE: "production-microservice"
+secret:
+  enabled: false
+  data:
+    db-password: "123"
+service:
+  annotations:
+    loadbalancer.openstack.org/network-id: "43e711b2-f39b-48bf-b509-a6c1683ec4c4"
+    loadbalancer.openstack.org/subnet-id: "98559f9f-f084-42e3-bc95-7a181e13b6d3"
+    service.beta.kubernetes.io/openstack-internal-load-balancer: "false"
+  ports:
+    - servicePort: 80
+      containerPort: 80
+      type: LoadBalancer

@@ -1,0 +1,20 @@
+{{- define "app.fullname"}}
+{{- $global := default (dict) .Values.global -}}
+{{- $base := default (printf "%s" .Chart.Name) .Values.fullnameOverride -}}
+{{- $name := print $base -}}
+{{- $name | lower | trunc 54 | trimSuffix "-" -}}
+{{- end -}}
+
+{{- define "app.configmap"}}
+{{- $global := default (dict) .Values.global -}}
+{{- $base := default (printf "config-%s" .Chart.Name) .Values.fullnameOverride -}}
+{{- $name := print $base -}}
+{{- $name | lower | trunc 54 | trimSuffix "-" -}}
+{{- end -}}
+
+{{- define "app.secret"}}
+{{- $global := default (dict) .Values.global -}}
+{{- $base := default (printf "secret-%s" .Chart.Name) .Values.fullnameOverride -}}
+{{- $name := print $base -}}
+{{- $name | lower | trunc 54 | trimSuffix "-" -}}
+{{- end -}}
