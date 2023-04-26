@@ -129,8 +129,8 @@ global:
   ## Reference to one or more secrets to be used when pulling images
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
   ##
-  imagePullSecrets: []
-  # - name: "image-pull-secret"
+  imagePullSecrets: 
+    - name: "regcred"
   # or
   # - "image-pull-secret"
 
@@ -493,7 +493,7 @@ alertmanager:
     ## Image of Alertmanager
     ##
     image:
-      registry: quay.io
+      registry: MY_NCR_PRIVATE_URI
       repository: prometheus/alertmanager
       tag: v0.25.0
       sha: ""
@@ -2183,7 +2183,7 @@ prometheusOperator:
   ## Prometheus-operator image
   ##
   image:
-    registry: quay.io
+    registry: MY_NCR_PRIVATE_URI
     repository: prometheus-operator/prometheus-operator
     # if not set appVersion field from Chart.yaml is used
     tag: ""
@@ -2210,7 +2210,7 @@ prometheusOperator:
   ##
   prometheusConfigReloader:
     image:
-      registry: quay.io
+      registry: MY_NCR_PRIVATE_URI
       repository: prometheus-operator/prometheus-config-reloader
       # if not set appVersion field from Chart.yaml is used
       tag: ""
@@ -2228,7 +2228,7 @@ prometheusOperator:
   ## Thanos side-car image when configured
   ##
   thanosImage:
-    registry: quay.io
+    registry: MY_NCR_PRIVATE_URI
     repository: thanos/thanos
     tag: v0.30.2
     sha: ""
@@ -2282,7 +2282,7 @@ prometheus:
   # Thanos sidecar on prometheus nodes
   # (Please remember to change ${kube-prometheus-stack.fullname} and ${namespace}. Not just copy and paste!)
   thanosService:
-    enabled: false
+    enabled: trues
     annotations: {}
     labels: {}
 
@@ -2719,7 +2719,7 @@ prometheus:
     ## Image of Prometheus.
     ##
     image:
-      registry: quay.io
+      registry: MY_NCR_PRIVATE_URI
       repository: prometheus/prometheus
       tag: v2.42.0
       sha: ""
@@ -3603,7 +3603,7 @@ thanosRuler:
     ## Image of ThanosRuler
     ##
     image:
-      registry: quay.io
+      registry: MY_NCR_PRIVATE_URI
       repository: thanos/thanos
       tag: v0.30.2
       sha: ""
