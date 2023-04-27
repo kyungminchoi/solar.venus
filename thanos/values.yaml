@@ -178,7 +178,7 @@ query:
   ## @param query.dnsDiscovery.sidecarsNamespace Sidecars namespace to discover them using DNS discovery
   ##
   dnsDiscovery:
-    enabled: true
+    enabled: false
     sidecarsService: ""
     sidecarsNamespace: ""
   ## @param query.stores Statically configure store APIs to connect with Thanos Query
@@ -209,7 +209,8 @@ query:
   extraEnvVarsSecret: ""
   ## @param query.extraFlags Extra Flags to passed to Thanos Query
   ##
-  extraFlags: []
+  extraFlags: 
+    - '--grpc-client-tls-secure'
   ## @param query.command Override default container command (useful when using custom images)
   ##
   command: []
