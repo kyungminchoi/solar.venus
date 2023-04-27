@@ -2282,10 +2282,7 @@ prometheus:
   # (Please remember to change ${kube-prometheus-stack.fullname} and ${namespace}. Not just copy and paste!)
   thanosService:
     enabled: true
-    annotations: 
-      loadbalancer.openstack.org/network-id: MY_DEV_VPC_ID
-      loadbalancer.openstack.org/subnet-id: MY_DEV_SUBNET_ID
-      service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
+    annotations: {}
     labels: {}
 
     ## Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints
@@ -2294,7 +2291,7 @@ prometheus:
 
     ## Service type
     ##
-    type: LoadBalancer
+    type: ClusterIP
 
     ## gRPC port config
     portName: grpc
@@ -2343,8 +2340,11 @@ prometheus:
   # Service for external access to sidecar
   # Enabling this creates a service to expose thanos-sidecar outside the cluster.
   thanosServiceExternal:
-    enabled: false
-    annotations: {}
+    enabled: true
+    annotations: 
+      loadbalancer.openstack.org/network-id: b8668126-45c1-4101-8c83-95402c98725c
+      loadbalancer.openstack.org/subnet-id: 259a0177-ef5b-44f2-bf68-8cfa4e4fc911
+      service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
     labels: {}
     loadBalancerIP: ""
     loadBalancerSourceRanges: []

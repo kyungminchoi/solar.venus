@@ -16,9 +16,7 @@ metadata:
 {{- end }}
 spec:
   type: {{ .Values.prometheus.thanosService.type }}
-{{- if and .Values.prometheus.thanosService.clusterIP (eq .Values.prometheus.thanosService.type "ClusterIP") }}
   clusterIP: {{ .Values.prometheus.thanosService.clusterIP }}
-{{- end }}
 {{- if ne .Values.prometheus.thanosService.type "ClusterIP" }}
   externalTrafficPolicy: {{ .Values.prometheus.thanosService.externalTrafficPolicy }}
 {{- end }}
