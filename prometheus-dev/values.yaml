@@ -3605,7 +3605,7 @@ thanosRuler:
     ## Image of ThanosRuler
     ##
     image:
-      registry: MY_NCR_PRIVATE_URI
+      registry: quay.io
       repository: thanos/thanos
       tag: v0.30.2
       sha: ""
