@@ -2345,8 +2345,8 @@ prometheus:
   thanosServiceExternal:
     enabled: true
     annotations: 
-      loadbalancer.openstack.org/network-id: 7a045b57-c937-468a-a88f-68e31ac65fe7
-      loadbalancer.openstack.org/subnet-id: 97c03f48-22e3-4d16-b991-18566b7a474a
+      loadbalancer.openstack.org/network-id: 3f447503-e0b6-4f74-a260-9647dce1de07
+      loadbalancer.openstack.org/subnet-id: 34245528-e055-4b9c-a5dc-64302d744ba0
       service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
     labels: {}
     loadBalancerIP: ""
