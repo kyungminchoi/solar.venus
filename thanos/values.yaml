@@ -469,7 +469,7 @@ query:
   service:
     ## @param query.service.type Kubernetes service type
     ##
-    type: ClusterIP
+    type: LoadBalancer
     ## @param query.service.ports.http Thanos Query service HTTP port
     ##
     ports:
