@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  registry: quay.io
+  registry: MY_NCR_PRIVATE_URI
   repository: prometheus/node-exporter
   # Overrides the image tag whose default is {{ printf "v%s" .Chart.AppVersion }}
   tag: ""
@@ -34,7 +34,7 @@ global:
 kubeRBACProxy:
   enabled: false
   image:
-    registry: quay.io
+    registry: MY_NCR_PRIVATE_URI
     repository: brancz/kube-rbac-proxy
     tag: v0.14.0
     sha: ""

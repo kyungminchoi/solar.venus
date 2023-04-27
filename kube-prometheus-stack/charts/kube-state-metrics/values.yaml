@@ -1,7 +1,7 @@
 # Default values for kube-state-metrics.
 prometheusScrape: true
 image:
-  registry: registry.k8s.io
+  registry: MY_NCR_PRIVATE_URI
   repository: kube-state-metrics/kube-state-metrics
   # If unset use v + .Charts.appVersion
   tag: ""
@@ -87,7 +87,7 @@ rbac:
 kubeRBACProxy:
   enabled: false
   image:
-    registry: quay.io
+    registry: MY_NCR_PRIVATE_URI
     repository: brancz/kube-rbac-proxy
     tag: v0.14.0
     sha: ""
