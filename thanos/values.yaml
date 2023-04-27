@@ -209,8 +209,7 @@ query:
   extraEnvVarsSecret: ""
   ## @param query.extraFlags Extra Flags to passed to Thanos Query
   ##
-  extraFlags: 
-    - '--grpc-client-tls-secure'
+  extraFlags: []
   ## @param query.command Override default container command (useful when using custom images)
   ##
   command: []
