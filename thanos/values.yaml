@@ -184,8 +184,8 @@ query:
   ## @param query.stores Statically configure store APIs to connect with Thanos Query
   ##
   stores: 
-  - 10.0.0.54:10901
-  - 172.16.0.102:10901
+  - 10.0.0.24:10901
+  - 172.16.0.92:10901
   ## @param query.sdConfig Query Service Discovery Configuration
   ## Specify content for servicediscovery.yml
   ##
