@@ -3175,7 +3175,10 @@ prometheus:
     ## This is experimental and may change significantly without backward compatibility in any release.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#thanosspec
     ##
-    thanos: {}
+    thanos: 
+      objectStorageConfig:
+        key: "objStore.yaml"
+        name: "thanos-objstore-config"
       # secretProviderClass:
       #   provider: gcp
       #   parameters:
