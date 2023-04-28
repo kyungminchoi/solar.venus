@@ -2360,7 +2360,7 @@ prometheus:
     ## HTTP port config (for metrics)
     httpPortName: http
     httpPort: 10902
-    targetHttpPort: "http"
+    targetHttpPort: "http"s
 
     ## Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints
     ##
@@ -3176,7 +3176,11 @@ prometheus:
     ## This is experimental and may change significantly without backward compatibility in any release.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#thanosspec
     ##
-    thanos: {}
+    ## prometheusSpec.thanos
+    thanos: 
+      objectStorageConfig:
+        key: "objStore.yaml"
+        name: "thanos-objstore-config"
       # secretProviderClass:
       #   provider: gcp
       #   parameters:
