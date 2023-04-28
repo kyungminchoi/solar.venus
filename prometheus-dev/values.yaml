@@ -2360,7 +2360,7 @@ prometheus:
     ## HTTP port config (for metrics)
     httpPortName: http
     httpPort: 10902
-    targetHttpPort: "http"s
+    targetHttpPort: "http"
 
     ## Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints
     ##
