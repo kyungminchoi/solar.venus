@@ -71,7 +71,14 @@ image:
 ## @param objstoreConfig The [objstore configuration](https://thanos.io/tip/thanos/storage.md/)
 ## Specify content for objstore.yml
 ##
-objstoreConfig: ""
+objstoreConfig: |-
+  type: s3
+  config:
+    bucket: thanos
+    region: KR2
+    endpoint: kr2-api-object-storage.nhncloudservice.com
+    access_key: c904cf5e00ba4ee095593093399ab969
+    secret_key: c398f571e93c4cf08c78c4d702984d80
 ## @param indexCacheConfig The [index cache configuration](https://thanos.io/tip/components/store.md/)
 ## Specify content for index-cache.yml
 ##
