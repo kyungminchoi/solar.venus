@@ -124,7 +124,7 @@ global:
 
   ## Global image registry to use if it needs to be overriden for some specific use cases (e.g local registries, custom images, ...)
   ##
-  imageRegistry: private-e3251850-kr2-registry.container.nhncloud.com/ncr
+  imageRegistry: MY_NCR_PRIVATE_URI
 
   ## Reference to one or more secrets to be used when pulling images
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
@@ -493,7 +493,7 @@ alertmanager:
     ## Image of Alertmanager
     ##
     image:
-      registry: private-e3251850-kr2-registry.container.nhncloud.com/ncr
+      registry: MY_NCR_PRIVATE_URI
       repository: prometheus/alertmanager
       tag: v0.25.0
       sha: ""
@@ -1887,7 +1887,7 @@ prometheusOperator:
     patch:
       enabled: true
       image:
-        registry: private-e3251850-kr2-registry.container.nhncloud.com/ncr
+        registry: MY_NCR_PRIVATE_URI
         repository: ingress-nginx/kube-webhook-certgen
         tag: v20221220-controller-v1.5.1-58-g787ea74b6
         sha: ""
@@ -2183,7 +2183,7 @@ prometheusOperator:
   ## Prometheus-operator image
   ##
   image:
-    registry: private-e3251850-kr2-registry.container.nhncloud.com/ncr
+    registry: MY_NCR_PRIVATE_URI
     repository: prometheus-operator/prometheus-operator
     # if not set appVersion field from Chart.yaml is used
     tag: ""
@@ -2210,7 +2210,7 @@ prometheusOperator:
   ##
   prometheusConfigReloader:
     image:
-      registry: private-e3251850-kr2-registry.container.nhncloud.com/ncr
+      registry: MY_NCR_PRIVATE_URI
       repository: prometheus-operator/prometheus-config-reloader
       # if not set appVersion field from Chart.yaml is used
       tag: ""
@@ -2228,7 +2228,7 @@ prometheusOperator:
   ## Thanos side-car image when configured
   ##
   thanosImage:
-    registry: private-e3251850-kr2-registry.container.nhncloud.com/ncr
+    registry: MY_NCR_PRIVATE_URI
     repository: thanos/thanos
     tag: v0.30.2
     sha: ""
@@ -2282,10 +2282,7 @@ prometheus:
   # (Please remember to change ${kube-prometheus-stack.fullname} and ${namespace}. Not just copy and paste!)
   thanosService:
     enabled: true
-    annotations: 
-      loadbalancer.openstack.org/network-id: b8668126-45c1-4101-8c83-95402c98725c
-      loadbalancer.openstack.org/subnet-id: 259a0177-ef5b-44f2-bf68-8cfa4e4fc911
-      service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
+    annotations: {}
     labels: {}
 
     ## Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints
@@ -2345,8 +2342,8 @@ prometheus:
   thanosServiceExternal:
     enabled: true
     annotations: 
-      loadbalancer.openstack.org/network-id: b8668126-45c1-4101-8c83-95402c98725c
-      loadbalancer.openstack.org/subnet-id: 259a0177-ef5b-44f2-bf68-8cfa4e4fc911
+      loadbalancer.openstack.org/network-id: 3f447503-e0b6-4f74-a260-9647dce1de07
+      loadbalancer.openstack.org/subnet-id: 34245528-e055-4b9c-a5dc-64302d744ba0
       service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
     labels: {}
     loadBalancerIP: ""
@@ -2364,7 +2361,7 @@ prometheus:
 
     ## Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints
     ##
-    externalTrafficPolicy: Cluster
+    # externalTrafficPolicy: Cluster
 
     ## Service type
     ##
@@ -2724,7 +2721,7 @@ prometheus:
     ## Image of Prometheus.
     ##
     image:
-      registry: private-e3251850-kr2-registry.container.nhncloud.com/ncr
+      registry: MY_NCR_PRIVATE_URI
       repository: prometheus/prometheus
       tag: v2.42.0
       sha: ""
@@ -2767,7 +2764,8 @@ prometheus:
     ## External labels to add to any time series or alerts when communicating with external systems
     ##
     externalLabels: 
-      cluster: prd
+      cluster: dev
+
     ## enable --web.enable-remote-write-receiver flag on prometheus-server
     ##
     enableRemoteWriteReceiver: false
@@ -3175,6 +3173,7 @@ prometheus:
     ## This is experimental and may change significantly without backward compatibility in any release.
     ## ref: https://github.com/prometheus-operator/prometheus-operator/blob/main/Documentation/api.md#thanosspec
     ##
+    ## prometheusSpec.thanos
     thanos: 
       objectStorageConfig:
         key: "objStore.yaml"

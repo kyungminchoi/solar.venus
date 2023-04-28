@@ -2282,10 +2282,7 @@ prometheus:
   # (Please remember to change ${kube-prometheus-stack.fullname} and ${namespace}. Not just copy and paste!)
   thanosService:
     enabled: true
-    annotations: 
-      loadbalancer.openstack.org/network-id: 3f447503-e0b6-4f74-a260-9647dce1de07
-      loadbalancer.openstack.org/subnet-id: 34245528-e055-4b9c-a5dc-64302d744ba0
-      service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
+    annotations: {}
     labels: {}
 
     ## Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints
