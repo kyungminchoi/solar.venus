@@ -124,7 +124,7 @@ global:
 
   ## Global image registry to use if it needs to be overriden for some specific use cases (e.g local registries, custom images, ...)
   ##
-  imageRegistry: c64c9d69-kr2-registry.container.nhncloud.com/ncr
+  imageRegistry: MY_NCR_PRIVATE_URI
 
   ## Reference to one or more secrets to be used when pulling images
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
@@ -493,7 +493,7 @@ alertmanager:
     ## Image of Alertmanager
     ##
     image:
-      registry: c64c9d69-kr2-registry.container.nhncloud.com/ncr
+      registry: MY_NCR_PRIVATE_URI
       repository: prometheus/alertmanager
       tag: v0.25.0
       sha: ""
@@ -1887,7 +1887,7 @@ prometheusOperator:
     patch:
       enabled: true
       image:
-        registry: c64c9d69-kr2-registry.container.nhncloud.com/ncr
+        registry: MY_NCR_PRIVATE_URI
         repository: ingress-nginx/kube-webhook-certgen
         tag: v20221220-controller-v1.5.1-58-g787ea74b6
         sha: ""
@@ -2183,7 +2183,7 @@ prometheusOperator:
   ## Prometheus-operator image
   ##
   image:
-    registry: c64c9d69-kr2-registry.container.nhncloud.com/ncr
+    registry: MY_NCR_PRIVATE_URI
     repository: prometheus-operator/prometheus-operator
     # if not set appVersion field from Chart.yaml is used
     tag: ""
@@ -2210,7 +2210,7 @@ prometheusOperator:
   ##
   prometheusConfigReloader:
     image:
-      registry: c64c9d69-kr2-registry.container.nhncloud.com/ncr
+      registry: MY_NCR_PRIVATE_URI
       repository: prometheus-operator/prometheus-config-reloader
       # if not set appVersion field from Chart.yaml is used
       tag: ""
@@ -2228,7 +2228,7 @@ prometheusOperator:
   ## Thanos side-car image when configured
   ##
   thanosImage:
-    registry: c64c9d69-kr2-registry.container.nhncloud.com/ncr
+    registry: MY_NCR_PRIVATE_URI
     repository: thanos/thanos
     tag: v0.30.2
     sha: ""
@@ -2342,8 +2342,8 @@ prometheus:
   thanosServiceExternal:
     enabled: true
     annotations: 
-      loadbalancer.openstack.org/network-id: 0c913219-a9ae-4aa2-9c3f-6891d0a2db9c
-      loadbalancer.openstack.org/subnet-id: fe52723c-7e1a-4b03-9d83-90a5b46c1f80
+      loadbalancer.openstack.org/network-id: MY_DEV_VPC_ID
+      loadbalancer.openstack.org/subnet-id: MY_DEV_SUBNET_ID
       service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
     labels: {}
     loadBalancerIP: ""
@@ -2721,7 +2721,7 @@ prometheus:
     ## Image of Prometheus.
     ##
     image:
-      registry: c64c9d69-kr2-registry.container.nhncloud.com/ncr
+      registry: MY_NCR_PRIVATE_URI
       repository: prometheus/prometheus
       tag: v2.42.0
       sha: ""
