@@ -124,7 +124,7 @@ global:
 
   ## Global image registry to use if it needs to be overriden for some specific use cases (e.g local registries, custom images, ...)
   ##
-  imageRegistry: MY_NCR_PRIVATE_URI
+  imageRegistry: private-1b252d02-kr2-registry.container.nhncloud.com/ncr
 
   ## Reference to one or more secrets to be used when pulling images
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
@@ -493,7 +493,7 @@ alertmanager:
     ## Image of Alertmanager
     ##
     image:
-      registry: MY_NCR_PRIVATE_URI
+      registry: private-1b252d02-kr2-registry.container.nhncloud.com/ncr
       repository: prometheus/alertmanager
       tag: v0.25.0
       sha: ""
@@ -1887,7 +1887,7 @@ prometheusOperator:
     patch:
       enabled: true
       image:
-        registry: MY_NCR_PRIVATE_URI
+        registry: private-1b252d02-kr2-registry.container.nhncloud.com/ncr
         repository: ingress-nginx/kube-webhook-certgen
         tag: v20221220-controller-v1.5.1-58-g787ea74b6
         sha: ""
@@ -2183,7 +2183,7 @@ prometheusOperator:
   ## Prometheus-operator image
   ##
   image:
-    registry: MY_NCR_PRIVATE_URI
+    registry: private-1b252d02-kr2-registry.container.nhncloud.com/ncr
     repository: prometheus-operator/prometheus-operator
     # if not set appVersion field from Chart.yaml is used
     tag: ""
@@ -2210,7 +2210,7 @@ prometheusOperator:
   ##
   prometheusConfigReloader:
     image:
-      registry: MY_NCR_PRIVATE_URI
+      registry: private-1b252d02-kr2-registry.container.nhncloud.com/ncr
       repository: prometheus-operator/prometheus-config-reloader
       # if not set appVersion field from Chart.yaml is used
       tag: ""
@@ -2228,7 +2228,7 @@ prometheusOperator:
   ## Thanos side-car image when configured
   ##
   thanosImage:
-    registry: MY_NCR_PRIVATE_URI
+    registry: private-1b252d02-kr2-registry.container.nhncloud.com/ncr
     repository: thanos/thanos
     tag: v0.30.2
     sha: ""
@@ -2287,7 +2287,7 @@ prometheus:
 
     ## Denotes if this Service desires to route external traffic to node-local or cluster-wide endpoints
     ##
-    externalTrafficPolicy: Cluster
+    externalTrafficPolicy: Cluster  
 
     ## Service type
     ##
@@ -2342,8 +2342,8 @@ prometheus:
   thanosServiceExternal:
     enabled: true
     annotations: 
-      loadbalancer.openstack.org/network-id: MY_PRD_VPC_ID
-      loadbalancer.openstack.org/subnet-id: MY_PRD_SUBNET_ID
+      loadbalancer.openstack.org/network-id: d86e2236-ad09-4c45-abee-8dbab36caf3a
+      loadbalancer.openstack.org/subnet-id: 093a368f-c8e4-4d23-9ccc-4be233f99b39
       service.beta.kubernetes.io/openstack-internal-load-balancer: "true"
     labels: {}
     loadBalancerIP: ""
@@ -2721,7 +2721,7 @@ prometheus:
     ## Image of Prometheus.
     ##
     image:
-      registry: MY_NCR_PRIVATE_URI
+      registry: private-1b252d02-kr2-registry.container.nhncloud.com/ncr
       repository: prometheus/prometheus
       tag: v2.42.0
       sha: ""
